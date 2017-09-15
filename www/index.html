@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Bootstrap JS -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <!-- <script src="/js/angular.js"></script> -->
+
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+  <!-- <script>
+    $(function(){
+      $("#table").load("/views/table.html");
+    });
+  </script> -->
+
+</head>
+
+<body>
+  <p>Hello world!</p>
+
+  <script src="/socket.io/socket.io.js"></script>
+
+  <!-- <div id="table"></div> -->
+
+  <script>
+  var app = angular.module('userTableApp', []);
+
+  app.factory('socket', function(){
+    var socket = io.connect('http://localhost:8080');
+    return socket;
+  });
+
+  app.controller('UserTableCtrl', function($scope, socket){
+    // $scope.users = []
+    $scope.firstName = "Azmi";
+
+    socket.on('connect', () => {
+      console.log("connected to the server in index.html.");
+    })
+
+    socket.on('userData', function(data){
+      console.log("users in index.html");
+      console.log(data);
+      $scope.users = data;
+      // $scope.users.push(data);
+      $scope.$digest()
+
+      console.log("name: " + $scope.firstName);
+      console.log("users len: " + $scope.users.length);
+      console.log("users in scope: ")
+      console.log($scope.users)
+
+      console.log("your location: ");
+      navigator.geolocation.getCurrentPosition(function (position) {
+        // alert(position);
+      }, function() {
+        // alert("Unable to fetch location.");
+        console.log("unable to fetch location");
+      }); //navigator end.
+    });
+  });
+
+  </script>
+
+  <div class="container" ng-app = "userTableApp" ng-controller = "UserTableCtrl">
+    <p>{{firstName}}<p>
+    <h2>Users Table</h2>
+    <p>The table shows you all users</p>
+
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Salary</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users track by $index">
+          <td>{{user.fname}}</td>
+          <td>{{user.lname}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.phoneNo}}</td>
+          <td>{{user.salary}}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+</body>
+
+</html>

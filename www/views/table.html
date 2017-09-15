@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <!-- Bootstrap JS -->
+  <script src="/js/jquery.min.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+
+  <script src="controllers/tableController.js"></script>
+</head>
+<body>
+
+<div class="container" ng-app = "userTableApp" ng-controller = "UserTableCtrl">
+  <h2>Users Table</h2>
+  <p>The table shows you all users</p>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Firstname</th>
+        <th>Lastname</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Salary</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat = "user in users">
+        <td>{{user }}</td>
+        <td>{{user.lname}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.phoneNo}}</td>
+        <td>{{user.salary}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+</html>
