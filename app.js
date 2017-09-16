@@ -1,4 +1,3 @@
-//server çalışacak..
 const path = require('path');
 const express = require('express');
 const http = require('http');
@@ -90,6 +89,14 @@ function getUserData(socket){
     }); //UserModel.find() ends.
 }
 
+function deleteOldExistingUsers() {
+  UserModel.remove({}, function (err) {
+  if (err) return handleError(err);
+  // removed!
+  console.log("removed all users!");
+});
+}
+
 function insertInstantUserData(){
   //async implementation for just funny example for this program.
   async.waterfall([
@@ -168,5 +175,6 @@ function insertInstantUserData(){
 
 server.listen(app.get('port'), () => {
   console.log('Server is runnig on port ' + app.get('port'));
+  deleteOldExistingUsers();
   insertInstantUserData();
 });

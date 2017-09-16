@@ -15,13 +15,18 @@ angular.module('scottyApp').controller('UserTableCtrl', function($scope, socket,
       console.log("connected list of users : ");
       console.log(clientsData);
     });
+
+    $scope.isActive = function (viewLocation) {
+     var active = (viewLocation === $location.path());
+     console.log("tableController.js : active -> " + active);
+     return active;
+   };
   })
 
   socket.on('userData', function(data){
     $scope.users = data;
     $scope.$digest()
 
-    console.log("users len: " + $scope.users.length);
     console.log("users in scope: ")
     console.log($scope.users)
 
@@ -29,7 +34,6 @@ angular.module('scottyApp').controller('UserTableCtrl', function($scope, socket,
     navigator.geolocation.getCurrentPosition(function (position) {
       console.log(position);
     }, function() {
-      // alert("Unable to fetch location.");
       console.log("unable to fetch location");
     }); //navigator end.
   }); //userData end.

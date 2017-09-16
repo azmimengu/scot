@@ -31,8 +31,8 @@
       </div>
       <ul class="nav navbar-nav">
         <!--active page tanımla.. -->
-        <li><a href="#!user">User</a></li>
-        <li><a href="#!map">Map</a></li>
+        <li ng-class="{ active: isActive('/user')}"><a href="#!user">User</a></li>
+        <li ng-class="{ active: isActive('/map')}"><a href="#!map">Map</a></li>
       </ul>
     </div>
   </nav>

@@ -1,4 +1,10 @@
-<div class="container" ng-controller = "MapCtrl">
+<style>
+  ng-map {width:100%; height:100%;position: absolute;}
+</style>
+   <div class="alert alert-info">
+  Full screen google map with your location
+</div>
+<div ng-controller = "MapCtrl">
   <ng-map center="current-location" zoom="12"
     pan-control="true"
     pan-control-options="{position:'TOP_RIGHT'}"
@@ -8,7 +14,8 @@
     zoom-control-options="{style:'LARGE', position:'LEFT_CENTER'}"
     scale-control="true"
     street-view-control="true"
-    street-view-control-options="{position:'LEFT_TOP'}">
+    street-view-control-options="{position:'LEFT_TOP'}"
+    default-style="false">
 
     <custom-marker position="{{latitude}},{{longitude}}" on-click="click()">
         <div><b>Scottying..</b>

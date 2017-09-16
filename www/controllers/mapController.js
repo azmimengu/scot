@@ -1,11 +1,7 @@
 console.log("@ mapController.js");
-// var app = angular.module('scottyApp.controller', ['ngMap', 'ngRoute']);
 
 angular.module('scottyApp').controller('MapCtrl', function($scope, NgMap) {
   NgMap.getMap().then(function(map) {
-    console.log(map.getCenter());
-    console.log('markers', map.markers);
-    console.log('shapes', map.shapes);
 
     function success(pos) {
       var crd = pos.coords;
@@ -13,10 +9,6 @@ angular.module('scottyApp').controller('MapCtrl', function($scope, NgMap) {
     $scope.latitude = crd.latitude;
     $scope.longitude = crd.longitude;
     $scope.$digest()
-    console.log('Your current position is:');
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude: ${crd.longitude}`);
-    console.log(`More or less ${crd.accuracy} meters.`);
   };
 
   function error(err) {
@@ -25,4 +17,10 @@ angular.module('scottyApp').controller('MapCtrl', function($scope, NgMap) {
 
     navigator.geolocation.getCurrentPosition(success, error);
   });
+
+  $scope.isActive = function (viewLocation) {
+     var active = (viewLocation === $location.path());
+     console.log("mapController.js : active -> " + active);
+     return active;
+   };
 });
