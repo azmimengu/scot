@@ -23,16 +23,15 @@
 
 <body ng-app="scottyApp">
   <script src="/socket.io/socket.io.js"></script>
-
+<base href="/" target="_blank">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
         <a class="navbar-brand">Scotty</a>
       </div>
       <ul class="nav navbar-nav">
-        <!--active page tanımla.. -->
-        <li ng-class="{ active: isActive('/user')}"><a href="#!user">User</a></li>
-        <li ng-class="{ active: isActive('/map')}"><a href="#!map">Map</a></li>
+        <li ng-class="{'active': $route.current.activetab == 'user'}"><a href="user">User</a></li>
+        <li ng-class="{'active': $route.current.activetab == 'map'}"><a href="map">Map</a></li>
       </ul>
     </div>
   </nav>

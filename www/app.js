@@ -1,31 +1,20 @@
-//routing işlemleri yapılacak..
 'use strict';
 var scottyApp = angular.module('scottyApp', ['ngRoute', 'ngMap']);
-// app.config( function($routeProvider) {
-//     $routeProvider
-//     .when("/user", {
-//         templateUrl : "/views/table.html"
-//         // controller : "UserTableCtrl"
-//     })
-//     .when("/map", {
-//         templateUrl : "/views/map.html"
-//     });
-// });
-
-scottyApp.config(['$routeProvider',
-    function (
-        $routeProvider
-    ) {
-          $routeProvider.
-              when('/user', {
-                  templateUrl: "/views/table.html"
-                  // controller: 'UserTableCtrl'
-              }).
-              when('/map', {
-                  templateUrl: '/views/map.html'
-                  // controller: 'MapCtrl'
-              }).
-              otherwise({
-                  redirectTo: "/user"
-              });
-}]);
+scottyApp.config( function($routeProvider, $locationProvider) {
+    $routeProvider
+    .when("/user", {
+        templateUrl : "/views/table.html",
+        activetab : "user"
+    })
+    .when("/map", {
+        templateUrl : "/views/map.html",
+        activetab : "map"
+    })
+    .otherwise({
+      redirectTo : "/user",
+      activetab : "user"
+    });
+    $locationProvider.html5Mode(true)
+}).run(function($rootScope, $route){
+  $rootScope.$route = $route;
+});

@@ -1,6 +1,3 @@
-console.log("@ tableController.js");
-// var app = angular.module('scottyApp.controllers', []);
-
 angular.module('scottyApp').factory('socket', function(){
   var socket = io.connect('http://localhost:8080');
   return socket;
@@ -16,12 +13,7 @@ angular.module('scottyApp').controller('UserTableCtrl', function($scope, socket,
       console.log(clientsData);
     });
 
-    $scope.isActive = function (viewLocation) {
-     var active = (viewLocation === $location.path());
-     console.log("tableController.js : active -> " + active);
-     return active;
-   };
-  })
+ });
 
   socket.on('userData', function(data){
     $scope.users = data;

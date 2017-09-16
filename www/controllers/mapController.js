@@ -1,6 +1,4 @@
-console.log("@ mapController.js");
-
-angular.module('scottyApp').controller('MapCtrl', function($scope, NgMap) {
+angular.module('scottyApp').controller('MapCtrl', function($scope, NgMap, $location, $routeParams) {
   NgMap.getMap().then(function(map) {
 
     function success(pos) {
@@ -18,9 +16,4 @@ angular.module('scottyApp').controller('MapCtrl', function($scope, NgMap) {
     navigator.geolocation.getCurrentPosition(success, error);
   });
 
-  $scope.isActive = function (viewLocation) {
-     var active = (viewLocation === $location.path());
-     console.log("mapController.js : active -> " + active);
-     return active;
-   };
 });
