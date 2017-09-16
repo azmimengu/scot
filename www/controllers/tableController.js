@@ -1,36 +1,37 @@
-var app = angular.module('userTableApp', [])
+console.log("@ tableController.js");
+// var app = angular.module('scottyApp.controllers', []);
 
-app.factory('socket', function(){
+angular.module('scottyApp').factory('socket', function(){
   var socket = io.connect('http://localhost:8080');
   return socket;
 });
 
-app.controller('UserTableCtrl', function($scope, socket){
-  // $scope.users = [
-  //   {"fname" : "azmi"},
-  //   {"lname" : "azmi"}
-  //   {"email" : "azmi"}
-  // ];
-
-  $scope.users = [
-        "Alfreds Futterkiste",
-        "Berglunds snabbköp",
-        "Centro comercial Moctezuma",
-        "Ernst Handel",
-    ]
+angular.module('scottyApp').controller('UserTableCtrl', function($scope, socket, $location, $routeParams){
+  // $scope.users = []
+  $scope.firstName = "Azmi";
 
   socket.on('connect', () => {
-    console.log("connected to the server.");
+    console.log("connected to the server in index.html.");
   })
 
   socket.on('userData', function(data){
-    console.log("users");
+    console.log("users in index.html");
     console.log(data);
-    // $scope.users = [
-    //   {"fname" : "azmi"},
-    //   {"lname" : "azmi"}
-    //   {"email" : "azmi"}
-    // ];
+    $scope.users = data;
+    // $scope.users.push(data);
     $scope.$digest()
+
+    console.log("name: " + $scope.firstName);
+    console.log("users len: " + $scope.users.length);
+    console.log("users in scope: ")
+    console.log($scope.users)
+
+    console.log("your location: ");
+    navigator.geolocation.getCurrentPosition(function (position) {
+      console.log(position);
+    }, function() {
+      // alert("Unable to fetch location.");
+      console.log("unable to fetch location");
+    }); //navigator end.
   });
 });

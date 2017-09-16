@@ -10,6 +10,7 @@ const bootstrapjsPath = path.join(__dirname + '/../node_modules/bootstrap/dist/j
 const jqueryjsPath =  path.join(__dirname + '/../node_modules/jquery/dist');
 const bootstrapcssPath = path.join(__dirname + '/../node_modules/bootstrap/dist/css');
 const angularjsPath = path.join(__dirname + '/../node_modules/angular');
+const ngmapPath = path.join(__dirname + '/../bower_components/ngmap/build/scripts')
 const port = process.env.PORT || 8080;
 
 var app = express();
@@ -22,6 +23,7 @@ app.use('/js', express.static(bootstrapjsPath));
 app.use('/js', express.static(jqueryjsPath));
 app.use('/css', express.static(bootstrapcssPath));
 app.use('/js', express.static(angularjsPath));
+app.use('/js', express.static(ngmapPath));
 app.set('port', port);
 
 //user model
