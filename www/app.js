@@ -2,16 +2,18 @@
 var scottyApp = angular.module('scottyApp', ['ngRoute', 'ngMap']);
 scottyApp.config( function($routeProvider, $locationProvider) {
     $routeProvider
-    .when("/user", {
+    .when("/user/", {
         templateUrl : "/views/table.html",
-        activetab : "user"
+        activetab : "user",
+        controller : 'UserTableCtrl'
     })
-    .when("/map", {
+    .when("/map/", {
         templateUrl : "/views/map.html",
-        activetab : "map"
+        activetab : "map",
+        controller : 'MapCtrl'
     })
     .otherwise({
-      redirectTo : "/user",
+      redirectTo : "/user/",
       activetab : "user"
     });
     $locationProvider.html5Mode(true)

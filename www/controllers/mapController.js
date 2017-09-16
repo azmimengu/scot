@@ -6,7 +6,7 @@ angular.module('scottyApp').controller('MapCtrl', function($scope, NgMap, $locat
       console.log(crd);
     $scope.latitude = crd.latitude;
     $scope.longitude = crd.longitude;
-    $scope.$digest()
+    // $scope.$digest() --> tekrar açılacak.
   };
 
   function error(err) {

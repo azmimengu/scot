@@ -1,33 +1,27 @@
-angular.module('scottyApp').factory('socket', function(){
-  var socket = io.connect('http://localhost:8080');
-  return socket;
-});
+var oScope;
 
-angular.module('scottyApp').controller('UserTableCtrl', function($scope, socket, $location, $routeParams){
+angular.module('scottyApp').controller('UserTableCtrl', function($scope, socket, $location, $routeParams, $timeout){
 
+  oScope = $scope;
   socket.on('connect', () => {
-    console.log("connected to the server in index.html.");
+    console.log("connected to the server");
 
     socket.on('clientsData', function(clientsData) {
       console.log("connected list of users : ");
       console.log(clientsData);
-    });
+    }); //clientsData end.
+
+    socket.on('userData', function(data){
+      $timeout(function() {
+       //  $scope.someData = someData;
+       oScope.users = data;
+       console.log(oScope.users);
+      }, 0);
+
+    }); //userData end.
 
  });
 
-  socket.on('userData', function(data){
-    $scope.users = data;
-    $scope.$digest()
 
-    console.log("users in scope: ")
-    console.log($scope.users)
-
-    console.log("your location: ");
-    navigator.geolocation.getCurrentPosition(function (position) {
-      console.log(position);
-    }, function() {
-      console.log("unable to fetch location");
-    }); //navigator end.
-  }); //userData end.
 
 });
