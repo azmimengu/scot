@@ -1,5 +1,5 @@
 <div class="container" ng-controller = "MapCtrl">
-  <ng-map center="-28.643387, 153.612224" zoom="12"
+  <ng-map center="current-location" zoom="12"
     pan-control="true"
     pan-control-options="{position:'TOP_RIGHT'}"
     map-type-control="true"
@@ -9,5 +9,11 @@
     scale-control="true"
     street-view-control="true"
     street-view-control-options="{position:'LEFT_TOP'}">
+    
+    <custom-marker position="{{latitude}},{{longitude}}" on-click="click()">
+        <div><b>Scottying..</b>
+          <img src="http://icons.iconarchive.com/icons/aha-soft/transport/48/motorcyclist-icon.png" />
+        </div>
+        </custom-marker>
   </ng-map>
 <div>

@@ -57,6 +57,8 @@ io.on('connection', (socket) => {
   //connect to db when user is connected.
   mongoose.connect('mongodb://localhost:27017/Scotty');
 
+  //initial fill tb.
+  getUserData(socket);
   //insert user data to db..
   setInterval(function(){
      getUserData(socket);
