@@ -26,6 +26,6 @@ scottyApp.config(['$routeProvider',
                   // controller: 'MapCtrl'
               }).
               otherwise({
-                  redirectTo: '/home'
+                  redirectTo: "/user"
               });
 }]);
